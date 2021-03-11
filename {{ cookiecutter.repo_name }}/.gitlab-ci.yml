@@ -1,0 +1,11 @@
+image: python:3.7
+
+stages:
+  - Lint and Test
+
+test:
+  stage: unittest
+  script:
+    - pip3.7 install --upgrade pip pytest flake8 pep8-naming .
+    - flake8
+    - pytest --verbose
