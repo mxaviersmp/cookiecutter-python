@@ -1,3 +1,11 @@
+help:
+	@echo "available commands"
+	@echo " - dev    : install dev environment"
+	@echo " - clean  : clean temporary folders and files"
+	@echo " - test   : runs all unit tests"
+	@echo " - lint   : checks code style"
+	@echo " - doc    : creates documentation in html"
+
 dev:
 	pip install -r requirements-dev.txt
 	pre-commit install
