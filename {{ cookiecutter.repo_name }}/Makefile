@@ -1,10 +1,11 @@
 help:
 	@echo "available commands"
-	@echo " - dev    : install dev environment"
-	@echo " - clean  : clean temporary folders and files"
-	@echo " - test   : runs all unit tests"
-	@echo " - lint   : checks code style"
-	@echo " - doc    : creates documentation in html"
+	@echo " - dev       : install dev environment"
+	@echo " - clean     : clean temporary folders and files"
+	@echo " - lint      : checks code style"
+	@echo " - test      : runs all unit tests"
+	@echo " - coverage  : runs coverage report"
+	@echo " - doc       : creates documentation in html"
 
 dev:
 	pip install -r requirements-dev.txt
@@ -17,12 +18,15 @@ clean:
 	rm -rf docs/_build
 	rm -f .coverage
 
-test: clean
-	coverage run -m pytest
-	coverage report
-
 lint: clean
 	flake8
+
+test: clean
+	pytest --verbose
+
+coverage: clean
+	coverage run -m pytest
+	coverage report
 
 doc: clean
 	sphinx-apidoc -f -o docs/references {{ cookiecutter.project_src }} {{ cookiecutter.project_src }}/tests/
