@@ -25,4 +25,5 @@ lint: clean
 	flake8
 
 doc: clean
+	sphinx-apidoc -f -o docs/references {{ cookiecutter.project_src }} {{ cookiecutter.project_src }}/tests/
 	make -C docs html
