@@ -30,4 +30,5 @@ coverage: clean
 
 doc: clean
 	sphinx-apidoc -f -o docs/references {{ cookiecutter.project_src }} {{ cookiecutter.project_src }}/tests/
+	jupyter nbconvert --to rst --output-dir docs/examples notebooks/[0-9]*.ipynb
 	make -C docs html

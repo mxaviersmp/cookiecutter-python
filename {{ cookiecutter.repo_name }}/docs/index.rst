@@ -22,4 +22,6 @@ Indices and tables
    :maxdepth: 4
    :caption: References
 
-   references/{{ cookiecutter.project_src }}
+   api/{{ cookiecutter.project_src }}
+   examples/notebooks
+
