@@ -20,7 +20,7 @@ else:
     shell_handler = logging.StreamHandler()
     fmt_shell = '%(levelname)s %(asctime)s %(message)s'
 
-shell_handler.setLevel(logging.DEBUG)
+shell_handler.setLevel(LOG_LEVEL)
 shell_formatter = logging.Formatter(fmt_shell)
 shell_handler.setFormatter(shell_formatter)
 logger.addHandler(shell_handler)
