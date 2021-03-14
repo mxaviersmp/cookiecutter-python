@@ -4,8 +4,9 @@ stages:
   - Lint and Test
 
 test:
-  stage: unittest
+  stage: lint and unittest
   script:
-    - pip3.7 install --upgrade pip pytest flake8 pep8-naming .
-    - flake8
-    - pytest --verbose
+    - pip3.7 install --upgrade pip
+    - make dev
+    - make lint
+    - make test
