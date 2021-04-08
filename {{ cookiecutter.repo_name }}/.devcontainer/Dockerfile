@@ -13,6 +13,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-COPY .devcontainer/.zshrc /root/.zshrc
+COPY .devcontainer/.zshrc /home/vscode/.zshrc
+ARG ZSH_CUSTOM=/home/vscode/.oh-my-zsh/custom
 
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+RUN sed -i 's/%~/%2~/g' $ZSH_CUSTOM/themes/codespaces.zsh-theme

@@ -33,7 +33,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     url='{{ cookiecutter.repo_name }}',
-    packages=find_packages(exclude=['*.tests']),
+    packages=find_packages(),
     classifiers=CLASSIFIERS,
     install_requires=DEPENDENCIES,
     include_package_data=True
