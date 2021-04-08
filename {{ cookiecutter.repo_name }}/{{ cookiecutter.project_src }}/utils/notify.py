@@ -2,8 +2,8 @@ from typing import Dict, Optional, Text
 import requests
 import os
 
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '978031542:AAGZ7ObEOQf8zTnoKYcodeA_1QJa70MDJg4')
-TELEGRAM_CHAT_ID = int(os.getenv('TELEGRAM_CHAT_ID', '801574585'))
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
 
 def getChats(token: Optional[Text] = None) -> Dict[int, Text]:
@@ -54,7 +54,7 @@ def send(
     if token is None:
         token = TELEGRAM_TOKEN
     if chat_id is None:
-        chat_id = TELEGRAM_CHAT_ID
+        chat_id = int(TELEGRAM_CHAT_ID)
     data = {"chat_id": chat_id, "text": msg}
     result = requests.post("https://api.telegram.org/bot{}/sendMessage".format(token), json=data)
     return result.json().get('result')
