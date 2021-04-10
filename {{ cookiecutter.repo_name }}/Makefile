@@ -10,6 +10,7 @@ help:
 dev:
 	pip install -r requirements-dev.txt
 	pre-commit install
+	(command -v gitmoji >/dev/null && gitmoji -i) || echo Please install gitmoji-cli
 
 clean:
 	rm -rf `find . -type d -name .pytest_cache`
