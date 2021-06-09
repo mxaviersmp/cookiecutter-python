@@ -2,22 +2,14 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.140.1/containers/python-3
 {
 	"name": "Python 3",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": "..",
-		"args": {
-			// Update 'VARIANT' to pick a Python version: 3, 3.6, 3.7, 3.8
-			"VARIANT": "3.8",
-			// Options
-			"INSTALL_NODE": "false",
-			"NODE_VERSION": "lts/*"
-		}
-	},
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/zsh",
-		"python.pythonPath": "/usr/local/bin/python",
+		"terminal.integrated.defaultProfile.linux": "zsh",
+        "python.pythonPath": "/usr/local/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": false,
 		"python.linting.flake8Enabled": true,
@@ -36,7 +28,6 @@
 	"extensions": [
 		"ms-python.python",
 		"ms-python.vscode-pylance",
-		"visualstudioexptteam.vscodeintellicode",
 		"littlefoxteam.vscode-python-test-adapter",
 		"njpwerner.autodocstring",
 		"streetsidesoftware.code-spell-checker",
@@ -58,10 +49,10 @@
 	// "runArgs": [],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 --disable-pip-version-check --no-cache-dir install --user -r requirements-dev.txt",
+	// "postCreateCommand": "pip3 --disable-pip-version-check --no-cache-dir install -r requirements.txt",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"

@@ -1,4 +1,4 @@
-psutil
-requests
-loguru
-typer
+loguru==0.5.3
+psutil==5.8.0
+requests==2.25.1
+typer==0.3.2

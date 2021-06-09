@@ -8,7 +8,6 @@
     "description": "A short description of the project",
     "license": ["MIT", "BSD-3", "Mozilla 2.0", "No license file"],
     "_copy_without_render": [
-        ".github/workflows/*.yml",
-        ".gitlab-ci.yml"
+        ".github/workflows/*.yml"
     ]
 }

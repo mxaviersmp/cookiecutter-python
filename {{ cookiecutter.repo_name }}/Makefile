@@ -1,6 +1,6 @@
 help:
 	@echo "available commands"
-	@echo " - dev       : install dev environment"
+	@echo " - dev       : install development environment"
 	@echo " - clean     : clean temporary folders and files"
 	@echo " - lint      : checks code style"
 	@echo " - test      : runs all unit tests"
@@ -9,13 +9,9 @@ help:
 
 dev:
 	pip install -r requirements-dev.txt
+	pip install -e .
 	pre-commit install
 	(command -v gitmoji >/dev/null && gitmoji -i) || echo Please install gitmoji-cli
-
-ci:
-	python -m pip install --upgrade pip
-	pip install flake8 pep8-naming flake8-bugbear flake8-docstrings pytest coverage geopandas
-	pip install .
 
 clean:
 	rm -rf `find . -type d -name .pytest_cache`
@@ -25,13 +21,14 @@ clean:
 	rm -f .coverage
 
 lint: clean
-	flake8
+	flake8 {{ cookiecutter.project_src }}
+	mypy {{ cookiecutter.project_src }}
 
 test: clean
-	pytest --verbose
+	pytest {{ cookiecutter.project_src }}
 
 coverage: clean
-	coverage run -m pytest
+	coverage run -m pytest {{ cookiecutter.project_src }}
 	coverage report
 
 doc: clean
