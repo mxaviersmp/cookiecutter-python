@@ -21,14 +21,14 @@ clean:
 	rm -f .coverage
 
 lint: clean
-	flake8 {{ cookiecutter.project_src }}
-	mypy {{ cookiecutter.project_src }}
+	flake8
+	mypy
 
 test: clean
-	pytest {{ cookiecutter.project_src }}
+	pytest
 
 coverage: clean
-	coverage run -m pytest {{ cookiecutter.project_src }}
+	coverage run -m pytest
 	coverage report
 
 doc: clean
