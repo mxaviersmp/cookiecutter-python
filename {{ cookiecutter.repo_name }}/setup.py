@@ -32,7 +32,7 @@ setup(
     description='{{ cookiecutter.description }}',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url='{{ cookiecutter.repo_name }}',
+    url='{{ cookiecutter.repo_url }}',
     packages=find_packages(),
     classifiers=CLASSIFIERS,
     install_requires=DEPENDENCIES,

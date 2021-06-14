@@ -1,38 +1,40 @@
 help:
 	@echo "available commands"
-	@echo " - dev       : install development environment"
-	@echo " - clean     : clean temporary folders and files"
-	@echo " - lint      : checks code style"
-	@echo " - test      : runs all unit tests"
-	@echo " - coverage  : runs coverage report"
-	@echo " - doc       : creates documentation in html"
+	@echo " - venv              : creates the development environment"
+	@echo " - clean             : clean temporary folders and files"
+	@echo " - lint              : checks code style and type checks"
+	@echo " - test              : runs all unit and integration tests"
+	@echo " - coverage          : runs coverage report"
+	@echo " - clean-all         : removes environment, volumes, containers and images"
 
-dev:
-	pip install -r requirements-dev.txt
-	pip install -e .
-	pre-commit install
-	(command -v gitmoji >/dev/null && gitmoji -i) || echo Please install gitmoji-cli
+venv:
+	[ -d "./env" ] || ( \
+		python -m venv env && \
+		. env/bin/activate && \
+		pip install --upgrade pip && \
+		pip install -r requirements-dev.txt && \
+		pip install -e . && \
+		pre-commit install && \
+		((command -v gitmoji >/dev/null && gitmoji -i) || echo Please install gitmoji-cli) \
+	)
+	touch env/bin/activate
 
 clean:
 	rm -rf `find . -type d -name .pytest_cache`
+	rm -rf `find . -type d -name .mypy_cache`
 	rm -rf `find . -type d -name __pycache__`
 	rm -rf `find . -type d -name .ipynb_checkpoints`
-	rm -rf docs/_build
 	rm -f .coverage
 
-lint: clean
-	flake8
-	mypy
+lint: venv clean
+	. env/bin/activate; flake8; mypy
 
-test: clean
-	pytest
+test: venv clean
+	. env/bin/activate; pytest
 
-coverage: clean
-	coverage run -m pytest
-	coverage report
+coverage: venv clean
+	. env/bin/activate; coverage run -m pytest; coverage report
 
-doc: clean
-	rm -rf docs/api docs/examples
-	sphinx-apidoc -f -o docs/references {{ cookiecutter.project_src }} {{ cookiecutter.project_src }}/tests/
-	jupyter nbconvert --to rst --output-dir docs/examples notebooks/[0-9]*.ipynb
-	make -C docs html
+clean-all: clean
+	rm -rf app.egg-info
+	rm -rf env
