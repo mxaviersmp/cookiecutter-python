@@ -18,11 +18,10 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; \
         then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; \
     fi
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends \
-#     <your-package-list-here> \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
 
 # [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
 # COPY requirements-dev.txt /tmp/pip-tmp/requirements.txt
