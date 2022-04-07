@@ -2,5 +2,5 @@
 
 Cookiecutter template for python project 
 ```bash
-cookiecutter git@github.com:flych3r/cookiecutter-python-project.git
+cookiecutter git@github.com:flych3r/cookiecutter-python.git
 ```
