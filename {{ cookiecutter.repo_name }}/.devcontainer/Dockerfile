@@ -12,8 +12,8 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; \
     fi
 
 # [Option] Install Node.js
-ARG INSTALL_NODE="true"
-ARG NODE_VERSION="lts/*"
+ARG INSTALL_NODE=$INSTALL_NODE
+ARG NODE_VERSION=$NODE_VERSION
 RUN if [ "${INSTALL_NODE}" = "true" ]; \
         then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; \
     fi
